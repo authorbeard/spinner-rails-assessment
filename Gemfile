@@ -23,6 +23,16 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'mechanize'
+##############################################
+###First stab at incorporating Discogs api ###
+##############################################
+gem 'discogs-wrapper' #<--requires 'discogs' gem
+gem 'figaro' #appears unnecessary
+gem 'omniauth' #ditto
+#gem 'hashie' <--included in 'discogs-wrapper'
+##############################################
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

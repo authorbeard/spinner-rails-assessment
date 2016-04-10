@@ -1,7 +1,22 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+require 'csv'
+
+
+@lib=CSV.read("authorbeard.csv", {headers: true, header_converters: :symbol})
+
+
+binding.pry
+  @lib.each {|r|
+    album=Album.find_or_create_by(title: r[:title])
+    album.artist=Artist.find_or_create_by(name: r[:artist])
+    album.rel_date=r[:released].to_i
+    album.rel_id=r[:release_id].to_i
+    album.search_q="#{r[:artist]} #{r[:release_id]}"
+    album.save
+
+  }
+
+
+
+

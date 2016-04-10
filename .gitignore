@@ -39,3 +39,4 @@ bower.json
 
 
 /sinatra_version
+/config/initializers/env_secrets.yml
