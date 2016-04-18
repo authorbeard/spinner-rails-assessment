@@ -1,15 +1,8 @@
 <h1>Spinner!</h1>
 
- <% if logged_in %>
-    <h1>Hey, <%= current_user.name%></h1>
-  <% end %>
-
-
-<% unless locals.empty?%>
-  <h3><%= message %></h3>
+<% if user_signed_in? %>
+  <h1>Hey, <%= current_user.name%></h1>
+<% else %>
+  <%= link_to "Let's go!", new_user_session_path %>
 <% end %>
 
-  <% unless logged_in %>
-    <button type="submit" name="login"><a href="/login">Log me in</a></button>
-    <button type="submit" name="login"><a href="/signup">Sign me up!</a></button>
-  <% end %>

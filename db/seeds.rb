@@ -3,10 +3,8 @@
 require 'csv'
 
 
-@lib=CSV.read("authorbeard.csv", {headers: true, header_converters: :symbol})
+@lib=CSV.read("sinatra_version/authorbeard.csv", {headers: true, header_converters: :symbol})
 
-
-binding.pry
   @lib.each {|r|
     album=Album.find_or_create_by(title: r[:title])
     album.artist=Artist.find_or_create_by(name: r[:artist])
