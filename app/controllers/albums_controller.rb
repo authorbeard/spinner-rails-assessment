@@ -7,6 +7,9 @@ class AlbumsController < ApplicationController
     @albums=Album.all
   end
 
+  def show
+  end
+
   def new
   end
 
@@ -19,23 +22,22 @@ class AlbumsController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def edit
-byebug
-  end
+    redirect_to :back, :alert=>"You gotta be logged in & have that album to edit it" unless current_user.albums.include?(@album)
 
-  def spin
-byebug
-    current_user.spin_it(@album)
-    redirect_to user_path(current_user)
   end
 
   def update
+byebug
     @album.update(album_params)
     redirect_to album_path(@album)
   end
+
+#   def spin
+# byebug
+#     current_user.spin_it(@album)
+#     redirect_to album_path(@album)
+#   end
 
 
   def destroy
@@ -50,7 +52,7 @@ byebug
   end
 
   def album_params
-    params.require(:album).permit(:title, :catalog_no, :group, :rel_date, :rel_id, :acquired, :search_q, :alb_url, :artist_id, songs: [])
+    params.require(:album).permit(:title, :catalog_no, :group, :rel_date, :rel_id, :acquired, :search_q, :alb_url, :artist_id, :artist_attributes=>[:name], :song_attributes=>[:title])
   end
 
 end

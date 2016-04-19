@@ -1,10 +1,10 @@
-<%= form_for @album do |f| %>
+<%= form_for :album do |f| %>
   
   <%= f.label :title %> <%= f.text_field :title %><br>
 
-  <%= f.label :artist_id %> <%= f.collection_select :artist_id, Artist.order(:name), :id, :name %><br>
+  <%= f.label :artist %> <%= f.collection_select :artist, Artist.order(:name), :id, :name %><br>
     
-    <%= f.fields_for :artist_attributes do |a| %>
+    <%= f.fields_for Artist.new  do |a| %>
       <li>Can't find it? Enter it here: <%= a.text_field :name %></li><br>
     <% end %>
   
@@ -13,12 +13,13 @@
     <%= f.collection_check_boxes :songs, Song.all, :id, :name %><br>
   <% else %>
     <h3><%= link_to "Import this album's songs", song_importer_path(@album) %><h3>
-  <% end %>
-
-  <%= f.fields_for :song_attributes do |s| %>
+    
+    <%= f.fields_for Song.new do |s| %>
       <h5><%= s.label "Or be sloppy and enter tracks yourself" %></h5>
           <%= s.text_area :title, :autocomplete=>:off %><br>
     <% end %>
+  
+  <% end %>
 
   <%= f.submit %>
 

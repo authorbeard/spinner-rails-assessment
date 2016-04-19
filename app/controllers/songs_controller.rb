@@ -4,6 +4,9 @@ class SongsController < ApplicationController
   def index
   end
 
+  def show
+  end
+
   def new
   end
 
@@ -11,12 +14,6 @@ class SongsController < ApplicationController
   end
 
   def edit
-  end
-
-  def update
-  end
-
-  def show
   end
 
   def update

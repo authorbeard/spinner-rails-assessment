@@ -9,7 +9,7 @@
   <h3>Songs: </h3>
   <% @album.songs.each_with_index do |s, i| %>
     <ul>
-      <li><h3><%= "#{i+1}."%> <%=link_to s.title, song_path(@song)%></h3>
+      <li><h3><%= "#{i+1}."%> <%=link_to s.title, song_path(s)%></h3>
     </ul>
   <% end %>
 <% end %>
@@ -32,8 +32,7 @@
   
   <br></br>
   <%= button_to "Spin it again!", spin_path(@album) %>
-
-  <%= button_to "Edit album", edit_album_path(@album)%> 
+  <%= button_to "Edit album", edit_album_path(@album), method: :get %> 
 
   <form action="/albums/<%=@album.id%>/delete" method="post">
     <input id="hidden" type="hidden" name="_method" value="delete">

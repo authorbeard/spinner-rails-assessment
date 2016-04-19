@@ -1,22 +1,30 @@
 Rails.application.routes.draw do
+  get '/', to: "static#home"
+  root'static#home'
+
   devise_for :users
   as :user do
     get "/signin" => "devise/sessions#new"
     get "/signout" => "devise/sessions#destroy"
   end
-  
-  get '/', to: "static#home"
-  root'static#home'
 
-  resources :songs
-  resources :artists
-  resources :albums
-  post '/albums/:id/spin', to: 'albums#spin', as: "spin"
-  
   resources :users, only: [:show, :edit, :update, :destroy]
   
+  resources :albums
+  # post '/albums/:id/edit', to: "albums#update"
+  post '/albums/:id/spin', to: 'albums#spin', as: "spin"
+
+  resources :users do 
+    resources :albums
+    # resources :artists
+    # resources :songs
+  end
+
 
   
-  
+  resources :songs
+  post '/songs/new', as: "song_importer"
+
+  resources :artists
 
   end
