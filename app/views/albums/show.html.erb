@@ -1,0 +1,51 @@
+<h1><%=@album.title%></h1>
+
+<h2>Artist: <%= @album.artist.name if @album.artist!=nil%></h2>
+
+
+<% if @album.songs.empty? %>
+  <h3><a href="/get-tracks/<%=@album.id%>">Get this album's tracks</a><h3>
+<% else %>
+  <h3>Songs: </h3>
+  <% @album.songs.each_with_index do |s, i| %>
+    <ul>
+      <li><h3><%= "#{i+1}."%> <%=link_to s.title, song_path(@song)%></h3>
+    </ul>
+  <% end %>
+<% end %>
+
+
+<% if current_user.spins(@album).nil? %>
+  <%= button_for "Spin it!", spin_path(@album) %>
+<% else %>
+  <table layout="fixed" width=50%>
+    <tr align="left">
+      <th><h4>spin count</h4></th>
+      <th>Last Spun: </th>
+    </tr>
+    <tr>
+      <td><%= current_user.spins(@album) %></td>
+      <td><%= @album.last_spun.strftime("%A %B %C")%></td>
+    </tr>
+  </table>
+
+  
+  <br></br>
+  <%= button_to "Spin it again!", spin_path(@album) %>
+
+  <%= button_to "Edit album", edit_album_path(@album)%> 
+
+  <form action="/albums/<%=@album.id%>/delete" method="post">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <button type="submit" name="delete">FUCKIT, I DON'T WANT THIS ONE ANYMORE</button>
+  </form>
+<% end %>
+
+<br></br>
+
+
+
+ 
+
+
+

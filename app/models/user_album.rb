@@ -3,13 +3,13 @@ class UserAlbum < ActiveRecord::Base
   belongs_to :user 
   belongs_to :album 
 
-  before_update :last_spun
+  before_update :set_last_spun
 
 
-  protected
+  # protected
 
-  def last_spun
-    last_spun=Time.now
+  def set_last_spun
+    self.last_spun=Time.now
   end
 
 

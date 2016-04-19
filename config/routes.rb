@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :songs
   resources :artists
   resources :albums
+  post '/albums/:id/spin', to: 'albums#spin', as: "spin"
   
   resources :users, only: [:show, :edit, :update, :destroy]
   
