@@ -1,10 +1,8 @@
-<h1>Spinner!</h1>
-
 <% if user_signed_in? %>
-  <h1>Hey, <%= current_user.name%></h1>
+  <h3>Hey, <%= current_user.name%></h3>
 <% else %>
-
-<h3>Check out some of these records:</h3>
+  <h3>Check out some of these records:</h3>
+<% end %>
 
 <table>
   <tr>
@@ -12,11 +10,15 @@
     <th>Artist</th>
     <th>Fans</th>
     <th>Last Spun</th>
-    <th>I WANT THAT ONE</th>
-  <tr>
-
+    <th>OOOH! GIMME THIS</th>
+  </tr>
   <% @albums.each do |a| %>
-    
-
+  <tr>
+    <td><%= link_to a.title, album_path(a)%></td>
+    <td><%= link_to a.artist_name, artist_path(a.artist)%></td>
+    <td>"# of fans go here"</td>
+    <td>Probably need to bring back the spin talbe. Or add cols to fan_albums</td>
+    <td>"Add to collection"</td>  
+  </tr>
   <% end %>
 </table>
