@@ -23,6 +23,7 @@ class AlbumsController < ApplicationController
   end
 
   def edit
+byebug
     redirect_to :back, :alert=>"You gotta be logged in & have that album to edit it" unless current_user.albums.include?(@album)
 
   end
@@ -52,7 +53,7 @@ byebug
   end
 
   def album_params
-    params.require(:album).permit(:title, :catalog_no, :group, :rel_date, :rel_id, :acquired, :search_q, :alb_url, :artist_id, :artist_attributes=>[:name], :song_attributes=>[:title])
+    params.require(:album).permit(:title, :catalog_no, :group, :rel_date, :rel_id, :acquired, :search_q, :alb_url, :artist_id, :artist_attributes=>[:name], :songs_attributes=>[:title, :song_ids=>[]])
   end
 
 end
