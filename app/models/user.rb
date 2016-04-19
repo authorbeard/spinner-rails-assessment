@@ -4,8 +4,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :fan_albums
-  has_many :albums, through: :fan_albums
-  has_many :spins
+  has_many :albums
 
 end
