@@ -3,6 +3,20 @@
 <% if user_signed_in? %>
   <h1>Hey, <%= current_user.name%></h1>
 <% else %>
-  <%= link_to "Let's go!", new_user_session_path %>
-<% end %>
 
+<h3>Check out some of these records:</h3>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Artist</th>
+    <th>Fans</th>
+    <th>Last Spun</th>
+    <th>I WANT THAT ONE</th>
+  <tr>
+
+  <% @albums.each do |a| %>
+    
+
+  <% end %>
+</table>
