@@ -16,7 +16,7 @@
   <tr>
     <td><%= link_to a.title, album_path(a)%></td>
     <td><%= link_to a.artist_name, artist_path(a.artist)%></td>
-    <td>"# of fans go here"</td>
+    <td><%= a.fans.count %></td>
     <td>Probably need to bring back the spin talbe. Or add cols to fan_albums</td>
     <td>"Add to collection"</td>  
   </tr>
