@@ -15,31 +15,27 @@
 <% end %>
 
 
-<% if current_user.spins(@album).nil? %>
-  <%= button_for "Spin it!", spin_path(@album) %>
+<% if current_user.spins(@album) == 0 %>
+  <%= button_to "Spin it!", spin_path(@album) %>
 <% else %>
   <table layout="fixed" width=50%>
     <tr align="left">
       <th><h4>spin count</h4></th>
       <th>Last Spun: </th>
+      <%= button_to "Spin it again!", spin_path(@album) %>
     </tr>
     <tr>
       <td><%= current_user.spins(@album) %></td>
-      <td><%= @album.last_spun.strftime("%A %B %C")%></td>
+      <td><%= @album.last_spun.strftime("%A, %B %C")%></td>
     </tr>
   </table>
+<% end %>
 
   
   <br></br>
-  <%= button_to "Spin it again!", spin_path(@album) %>
+  
   <%= button_to "Edit album", edit_album_path(@album), method: :get %> 
-
-  <form action="/albums/<%=@album.id%>/delete" method="post">
-    <input id="hidden" type="hidden" name="_method" value="delete">
-    <button type="submit" name="delete">FUCKIT, I DON'T WANT THIS ONE ANYMORE</button>
-  </form>
-<% end %>
-
+  <%= button_to "Fucki, I don't want this one anymore", user_album_path(current_user, @album), method: :delete %>
 <br></br>
 
 

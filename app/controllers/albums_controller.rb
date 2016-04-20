@@ -8,9 +8,18 @@ class AlbumsController < ApplicationController
   end
 
   def show
+# byebug
   end
 
   def new
+  end
+
+  def import
+  end
+
+  def add
+    current_user.albums << @album
+    redirect_to :back, :notice=>"Awesome choice! <a href='#{album_path(@album)}'>Spin it now</a>"
   end
 
   def create
@@ -23,27 +32,26 @@ class AlbumsController < ApplicationController
   end
 
   def edit
-byebug
     redirect_to :back, :alert=>"You gotta be logged in & have that album to edit it" unless current_user.albums.include?(@album)
-
   end
 
   def update
-byebug
+# byebug
     @album.update(album_params)
     redirect_to album_path(@album)
   end
 
-#   def spin
+  def spin
 # byebug
-#     current_user.spin_it(@album)
-#     redirect_to album_path(@album)
-#   end
+    current_user.spin_it(@album)
+    redirect_to album_path(@album)
+  end
 
 
   def destroy
-    @album.destroy_all
-    redirect_to albums_path, :notice=>"Album destroyed"
+# byebug
+    current_user.user_albums.find_by(album_id: @album.id).delete
+    redirect_to albums_path, :notice=>"Okay, you ain't got that one anymore."
   end
 
   private
