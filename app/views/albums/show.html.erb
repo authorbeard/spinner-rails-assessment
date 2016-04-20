@@ -4,7 +4,7 @@
 
 
 <% if @album.songs.empty? %>
-  <h3><a href="/get-tracks/<%=@album.id%>">Get this album's tracks</a><h3>
+  <h3><%= link_to "Get this album's tracks", get_tracks_path(@album)%><h3>
 <% else %>
   <h3>Songs: </h3>
   <% @album.songs.each_with_index do |s, i| %>

@@ -14,7 +14,8 @@ class AlbumsController < ApplicationController
   def new
   end
 
-  def import
+  def import_songs
+byebug
   end
 
   def add

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :albums
   # post '/albums/:id/edit', to: "albums#update"
   post '/albums/:id/spin', to: 'albums#spin', as: "spin"
-  post '/albums/:id/import', to: 'albums#import', as: 'import'
+  get '/albums/:id/import_songs', to: 'albums#import_songs', as: 'import_songs'
   post '/albums/:id/add', to: 'albums#add', as: 'add_album'
 
   resources :users do 
