@@ -1,10 +1,9 @@
 class AlbumsController < ApplicationController
-  # before_action :store_location
   before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
   before_action :set_album, except: [:index, :new, :create]
 
   def index
-    @albums=Album.all
+    @albums||=Album.order(:artist_id)
   end
 
   def show
@@ -15,7 +14,8 @@ class AlbumsController < ApplicationController
   end
 
   def import_songs
-byebug
+    @album.import_songs
+    redirect_to album_path(@album)
   end
 
   def add
