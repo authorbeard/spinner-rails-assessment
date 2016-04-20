@@ -1,3 +1,15 @@
 // Place all the styles related to the Albums controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.most-collected {
+  align: right;
+  width: 100%;
+  background-color: #999;
+}
+
+table {
+  display: inline-block;
+  size: 60%;
+
+}

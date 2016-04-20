@@ -10,8 +10,8 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
+ //= require_tree .
+ //= require_self
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff"
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.ttf"
@@ -128,4 +128,11 @@ div {
     font-size: 12px;
     list-style: square;
   }
+}
+
+.most-collected {
+  background-color: #333;
+
+
+
 }
