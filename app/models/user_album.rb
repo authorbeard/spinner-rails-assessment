@@ -13,6 +13,12 @@ class UserAlbum < ActiveRecord::Base
     self.last_spun=Time.now
   end
 
+  def self.albums_with_fans
+    select(:album_id).distinct.pluck(:album_id)
+  end
 
+  def self.raw_rankings
+    group(:album_id).count.sort_by{|k, v| v}.reverse!
+  end
 
 end

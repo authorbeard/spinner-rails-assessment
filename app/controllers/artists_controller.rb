@@ -1,7 +1,9 @@
 class ArtistsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :set_artist, except: [:index, :new, :create]
 
   def index
+    @artists=Artist.order(:name)
   end
 
   def new
@@ -17,12 +19,18 @@ class ArtistsController < ApplicationController
   end
 
   def show
+
   end
 
   def update
   end
 
   def destroy
+  end
+
+  private 
+  def set_artist
+    @artist=Artist.find_by(id: params[:id])
   end
 
 end

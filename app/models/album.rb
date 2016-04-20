@@ -52,13 +52,28 @@ class Album < ActiveRecord::Base
     search=agent.get("http://www.discogs.com").form(id: "site_search")
     search.q=self.search_q
     results=agent.submit(search)
-# byebug
     self.alb_url=results.search("div.card a")[0]["href"]
     alb_pg=agent.get(self.alb_url)
     t_names=alb_pg.search("tr.track").search("span.tracklist_track_title").collect{|t| t.text}
     t_names.each {|t| self.songs << Song.find_or_create_by(title: t, artist_id: self.artist_id)}
     self.save 
   end
+
+### CLASS METHODS ### =
+  def self.with_fans
+    where("id IN (?)", UserAlbum.albums_with_fans)
+  end
+
+  def self.without_fans
+    where.not("id IN (?)", UserAlbum.albums_with_fans)
+  end
+
+
+  def self.rankings
+    UserAlbum.raw_rankings.collect{|a| [self.find(a[0]), a[1]]}
+  end
+
+
 
 
 end
