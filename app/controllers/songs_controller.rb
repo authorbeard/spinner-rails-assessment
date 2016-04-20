@@ -4,6 +4,10 @@ class SongsController < ApplicationController
   def index
   end
 
+  def import
+
+  end
+
   def show
   end
 

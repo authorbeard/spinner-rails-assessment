@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   end
 
   def spin_it(album)
-    user_albums.find_by(album.id).increment(:spins, by=1)
+    user_albums.find_by(album_id: album.id).increment(:spins, by=1).save
   end
 
 end

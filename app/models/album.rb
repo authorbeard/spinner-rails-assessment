@@ -5,6 +5,8 @@ class Album < ActiveRecord::Base
   has_many :user_albums
   has_many :fans, through: :user_albums, :source=>:user
 
+  validates_presence_of :title
+  
   accepts_nested_attributes_for :artist, reject_if: :empty?
   accepts_nested_attributes_for :songs, reject_if: :empty?
 
