@@ -41,3 +41,5 @@ bower.json
 /sinatra_version
 /config/initializers/env_secrets.yml
 /private
+# Ignore application configuration
+/config/application.yml

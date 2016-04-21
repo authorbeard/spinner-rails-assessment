@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get '/', to: "static#home"
   root'static#home'
 
-  devise_for :users
+  devise_for :users, :controllers=>{ :omniauth_callbacks => 'users/omniauth_callbacks'}
   as :user do
     get "/signin" => "devise/sessions#new"
     get "/signout" => "devise/sessions#destroy"
@@ -21,12 +21,27 @@ Rails.application.routes.draw do
     # resources :artists
     # resources :songs
   end
-
-
   
   resources :songs
   post '/songs/new', as: "song_importer"
 
   resources :artists
+
+
+  
+
+### Routes from discogs-wrapper readme. not sure they're needed.
+  # get 'tests/:id' => 'tests#show', :constraints  => {:id => /.+\.\w{3,4}/}
+
+  # resources :oauth do
+  #   collection do
+  #     get :authenticate
+  #     get :callback
+  #     get :whoami
+  #     get :add_want
+  #     get :edit_want
+  #     get :remove_want
+  #   end
+  # end
 
   end

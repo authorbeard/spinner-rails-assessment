@@ -29,9 +29,11 @@ gem 'mechanize'
 ###First stab at incorporating Discogs api ###
 ##############################################
 gem 'devise'
-gem 'discogs-wrapper' #<--requires 'discogs' gem
+# gem 'discogs-wrapper' #<--requires 'discogs' gem
 gem 'figaro' #appears unnecessary
-gem 'omniauth' #ditto
+gem 'omniauth'
+gem 'omniauth-facebook'
+# gem 'omniauth-discogs' #ditto
 #gem 'hashie' <--included in 'discogs-wrapper'
 ##############################################
 
