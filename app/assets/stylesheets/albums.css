@@ -7,13 +7,39 @@ div.container {
   display: inline-block;
   width: 30%;
   background-color: #EEE;
-
+  
   }
 }
 
 table.albums-index {
   display: inline-block;
-  width: 65%;
-
+  width: 60%;
+  
 }
 
+.container .album-card {
+  
+  display: inline-block;
+  width: 30%;
+  height: 50px;
+  border-spacing: 2px;
+  img {
+    vertical-align: middle; 
+    position: relative;
+    padding-left: 5px;
+    img.resize{
+      height: auto;
+
+    }
+
+  }
+
+  p {
+
+
+  }
+
+  
+
+
+}

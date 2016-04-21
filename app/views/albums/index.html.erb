@@ -4,8 +4,8 @@
   <h2><a href="www.discogs.com">Find some records!</a></h2>
   <h4>(This would be a great place to pull in Discogs' data dumps and populate the database, though it's better to just figure out the API)</h4>
 <% else %>
-  <%= render "rankings"%>
-  <table layout="fixed" width=100% >
+
+  <table class="albums-index" >
     <tr align="left">
       <th><h2> Title<h2></th>
       <th><h4> Artist<h4></th>
@@ -16,23 +16,17 @@
     <% @albums.each do |a| %>
     <tr align="left">
       <td><%= link_to a.title, album_path(a)%></td>
-      <td><%= link_to a.artist_name, artist_path(a) || button_to("Add", edit_album_path(a)) %></td>
-      <td><% a.rel_date || button_to("Add", edit_album_path(a)) %></td>
-      <td><% if user_signed_in? && current_user.albums.include?(a) %>
-            <h5>Got it!</h5>
-          <% else %>
-            <%= button_to "Add", add_album_path(a) %>
-            <% end %></td>
-      <td><button>
-          <% if a.alb_url %>
-            <a href="http://www.discogs.com/<%=a.alb_url%>">See album's Discogs page.</a>
-          <% else %>
-            <a href="http://www.discogs.com/search/?q=<%=a.title%>+<%=a.rel_id%>">Search on Discogs.com</a>
-          <% end %>
-          </button></td>
+      <td><%= display_album_artist(a) %>
+      <td><%= add_album_button(a) %></td>
+      <td><%= user_has(a) %></td>
+      <td><%= see_or_find_on_discogs(a) %></td>
     </tr>
     <% end %>
   </table>
+
+  <%= render "rankings"%>
+
+ 
 <% end %>
 
 <br></br>

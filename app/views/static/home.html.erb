@@ -1,8 +1,5 @@
-<% if user_signed_in? %>
-  <h3>Hey, <%= current_user.name%></h3>
-<% else %>
-  <h3>Check out some of these records:</h3>
-<% end %>
+<h3>Check out some of these records:</h3>
+
 
 <table>
   <tr>
@@ -17,8 +14,8 @@
     <td><%= link_to a.title, album_path(a)%></td>
     <td><%= link_to a.artist_name, artist_path(a.artist)%></td>
     <td><%= a.fans.count %></td>
-    <td>Probably need to bring back the spin talbe. Or add cols to fan_albums</td>
-    <td>"Add to collection"</td>  
+    <td><%= a.last_spun %></td  >
+    <td><%= button_to "Add", add_album_path(a)%></td>  
   </tr>
   <% end %>
 </table>

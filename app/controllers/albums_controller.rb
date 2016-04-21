@@ -11,6 +11,7 @@ class AlbumsController < ApplicationController
   end
 
   def new
+byebug
   end
 
   def import_songs
@@ -45,7 +46,7 @@ class AlbumsController < ApplicationController
   def spin
 # byebug
     current_user.spin_it(@album)
-    redirect_to album_path(@album)
+    redirect_to user_album_path(current_user, @album)
   end
 
 

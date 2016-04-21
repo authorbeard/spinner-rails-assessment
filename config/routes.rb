@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   resources :users do 
     resources :albums
+    post '/add', to: "albums#add", as: "add_album"
     # resources :artists
     # resources :songs
   end
