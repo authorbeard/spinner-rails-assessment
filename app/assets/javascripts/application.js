@@ -17,10 +17,12 @@
 
 $(document).ready(function() {
   
-  $("input#spin-it").click(function(event) {
-    $(this).css("color", "blue");
+  $("button.spin-it").click(function(event) {
+    $(this).css("color", "blue").text("spun!");
     event.preventDefault()
   });
+
+
 
 });
 
@@ -30,3 +32,15 @@ $(document).ready(function() {
 //     event.preventDefault()
 //   })
 // }
+
+
+////TESTING AJAX --  THIS ISN'T PASSING THE ID CORRECTLY (ALSO "RESPONSE" IS UNDEFINED)///
+
+//   $("button.spin-it").click(function(event) {
+//     var id = $(this).attr('id')
+//     $.post('/albums/#{id}/spin', {album_id: id}, function() {
+//       console.log(response)
+//     })
+//     (response).css("color", "blue").text('SPUN!');
+//     event.preventDefault()
+//   });

@@ -44,6 +44,7 @@ class AlbumsController < ApplicationController
   end
 
   def spin
+byebug
 
     current_user.spin_it(@album)
     redirect_to user_album_path(current_user, @album)
