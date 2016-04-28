@@ -14,7 +14,7 @@ module AlbumsHelper
 
   def user_has(album)
     if user_signed_in? && current_user.albums.include?(album) 
-       "Spin it!"
+       button_to "Spin it!", albums_path, method: :get, id: "spin-it" #<--CHANGE PATH ONCE JQUERY WORKING
     else
       button_to "Add", user_add_album_path(album)
     end 

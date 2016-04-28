@@ -14,3 +14,19 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+  
+  $("input#spin-it").click(function(event) {
+    $(this).css("color", "blue");
+    event.preventDefault()
+  });
+
+});
+
+// function spinButton() {
+//   $("input#spin-it").on('submit', form(event) {
+//     $(this).css("background", "blue")
+//     event.preventDefault()
+//   })
+// }

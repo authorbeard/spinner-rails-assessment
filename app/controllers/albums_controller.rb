@@ -7,11 +7,11 @@ class AlbumsController < ApplicationController
   end
 
   def show
-# byebug
+
   end
 
   def new
-byebug
+
   end
 
   def import_songs
@@ -38,20 +38,20 @@ byebug
   end
 
   def update
-# byebug
+
     @album.update(album_params)
     redirect_to album_path(@album)
   end
 
   def spin
-# byebug
+
     current_user.spin_it(@album)
     redirect_to user_album_path(current_user, @album)
   end
 
 
   def destroy
-# byebug
+
     current_user.user_albums.find_by(album_id: @album.id).delete
     redirect_to albums_path, :notice=>"Okay, you ain't got that one anymore."
   end
