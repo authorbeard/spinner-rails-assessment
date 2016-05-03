@@ -17,6 +17,7 @@
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.ttf"
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.svg"
  */
+@import "bootstrap-sprockets";
 @import "bootstrap";
 /* Some Style from the Bootstrap Default Theme */
 /*
