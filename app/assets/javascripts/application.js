@@ -14,25 +14,22 @@
 //= require jquery_ujs
 //= require turbolinks
 //= rquire bootstrap-sprockets
-//= require_tree .
+//= require albums
+
 
 $(document).ready(function() {
-  
-  $("button.spin-it").click(function(event) {
-    $(this).css("color", "blue").text("spun!");
+  $(".spin-it").click(function(event){
+
+    var id = parseInt($(this).attr("data"))
+    $.post("/albums/" + id + "/spin", function(data){
+      var albData=JSON.parse(data)
+      $("#album-" + albData["album"]).css("color", "blue").text(albData["spins"] + " Spins")
+      $(".user-spins").text(albData["spins"])
+      $(".last-user-spin").text(Date())
+    })
     event.preventDefault()
-  });
-
-
-
-});
-
-// function spinButton() {
-//   $("input#spin-it").on('submit', form(event) {
-//     $(this).css("background", "blue")
-//     event.preventDefault()
-//   })
-// }
+  })
+})
 
 
 ////TESTING AJAX --  THIS ISN'T PASSING THE ID CORRECTLY (ALSO "RESPONSE" IS UNDEFINED)///

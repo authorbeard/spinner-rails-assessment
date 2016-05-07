@@ -35,15 +35,19 @@ class Album < ActiveRecord::Base
     artist.name
   end
 
-  def spins
+  def total_spins
     user_albums.sum(:spins)
+  end
+
+  def last_spun
+    user_albums.order(last_spun: :desc).first.try(:last_spun)
   end
 
   def last_user
     user_albums.order(last_spun: :desc).first.try(:user_id)
   end
 
-  def last_spun
+  def recently_spun_albums
     user_albums.order(last_spun: :desc).first.try(:last_spun)
   end
 

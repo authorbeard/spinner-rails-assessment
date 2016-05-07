@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index]
   before_action :set_album, except: [:index, :new, :create]
 
   def index
@@ -43,11 +43,13 @@ class AlbumsController < ApplicationController
     redirect_to album_path(@album)
   end
 
-  def spin
-byebug
-
+  def spin    
     current_user.spin_it(@album)
-    redirect_to user_album_path(current_user, @album)
+    spins = current_user.spins(@album)
+    data={ "album": @album.id, "spins": spins}.to_json
+  # byebug
+    render plain: data
+  # byebug
   end
 
 

@@ -19,17 +19,17 @@
 
 
   <% if current_user.spins(album) == 0 %>
-    <%= button_to "Spin it!", spin_path(album) %>
+    <%= button_tag "Spin it!", {class: "spin-it", id: "album-#{album.id}", data: "#{album.id}"} %>
   <% else %>
     <table layout="fixed" width=50%>
       <tr align="left">
         <th><h4>spin count</h4></th>
         <th>Last Spun: </th>
-        <%= button_to "Spin it again!", spin_path(album) %>
+        <%= button_tag "Spin it again!", {class: "spin-it", id: "album-#{album.id}", data: "#{album.id}"}%>
       </tr>
       <tr>
-        <td><%= current_user.spins(album) %></td>
-        <td><%= album.last_spun.strftime("%A, %B %C")%></td>
+        <td class="user-spins"><%= current_user.spins(album) %></td>
+        <td class="last-user-spin"><%= album.last_spun.strftime("%A, %B %C")%></td>
       </tr>
     </table>
   <% end %>

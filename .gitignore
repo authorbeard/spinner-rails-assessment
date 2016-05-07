@@ -38,7 +38,7 @@ bower.json
 .byebug_history
 
 
-/sinatra_version
+/notes
 /config/initializers/env_secrets.yml
 /private
 # Ignore application configuration

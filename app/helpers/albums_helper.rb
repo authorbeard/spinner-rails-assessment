@@ -14,9 +14,9 @@ module AlbumsHelper
 
   def user_has(album)
     if user_signed_in? && current_user.albums.include?(album) 
-       button_tag "Spin it!", {class: "spin-it", id: "#{album.id}"} #<--ID IS A STUB TO MAKE AJAX WORK
+       button_tag "Spin it!", {class: "spin-it", id: "album-#{album.id}", data: "#{album.id}"} #<--ID IS A STUB TO MAKE AJAX WORK
     else
-      button_to "Add", user_add_album_path(album)
+      button_to "Add", user_add_album_path(album), {class: "add-album", id: "album-#{album.id}", data: "#{album.id}"}
     end 
   end
 
