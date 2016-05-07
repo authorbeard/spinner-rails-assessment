@@ -15,19 +15,27 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active">
+          <!-- options for "active" linke -->
           <% if current_user %>
             <% if current_user.name %>
-              <%= link_to "Hello, #{current_user.name}", user_path(current_user) %><span class="sr-only">(current)</span>
+              <%= link_to user_path(current_user) do %>
+                <%= "Hello #{current_user.name}"%><span class="sr-only">(current)</span>
+              <% end %>
             <% else %>
-              <%= link_to current_user.email, user_path(current_user) %>
+              <%= link_to user_path(current_user) do %>
+                <%= "Signed in with #{current_user.email}"%><span class="sr-only">(current)</span>
+              <% end %>
             <% end %>
           <% else %>
-            <%= link_to "Log In", signin_path %>
+            <%= link_to signin_path do %>
+              Sign in<span class="sr-only">(current)</span>
+            <% end %>
           <% end %>
         </li>
+        <!-- end options for "active" link (move to helper) -->
 
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Get me outta here<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Get me outta here<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><% if current_user %>
                   <%= link_to "Edit my profile", edit_user_path(current_user) %>
@@ -35,7 +43,6 @@
                   <%= link_to "Sign me up!", new_user_registration_path%>
                   <% end %></li>
             <li><%= link_to "Show me everything", albums_path%></li>
-            <li role="separator" class="divider"></li>
             <li><%= link_to "Log me out", signout_path%></li>
           </ul>
         </li>

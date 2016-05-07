@@ -1,9 +1,9 @@
 
 //= require jquery
+//= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
-//= rquire bootstrap-sprockets
-//= require albums
+
 
 
 $(document).ready(function() {
