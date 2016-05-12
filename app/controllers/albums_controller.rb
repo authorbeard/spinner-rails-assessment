@@ -44,13 +44,16 @@ class AlbumsController < ApplicationController
     redirect_to album_path(@album)
   end
 
-  def spin    
+  def spin   
+ 
     current_user.spin_it(@album)
-    spins = current_user.spins(@album)
-    data={ "album": @album.id, "spins": spins}.to_json
-  # byebug
-    render plain: data
-  # byebug
+    @u_album=UserAlbum.where(user_id: current_user.id).find_by(album_id: (@album.id))
+    # spins = current_user.spins(@album)
+    # data={ "album": @album.id, "spins": spins}.to_json
+  
+    render json: @u_album
+
+ 
   end
 
   def destroy

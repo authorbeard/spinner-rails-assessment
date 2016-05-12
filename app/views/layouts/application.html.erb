@@ -4,6 +4,7 @@
     <title>Spinner</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
     <%= analytics_init if Rails.env.production? %>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"></link>
   </head>
@@ -16,7 +17,7 @@
       </div>
       <!-- content -->
       <%= yield %>
-      <%= javascript_include_tag "application" %>  
-    </div>
+       
+    </div> 
   </body>
 </html>

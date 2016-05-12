@@ -43,3 +43,4 @@ bower.json
 /private
 # Ignore application configuration
 /config/application.yml
+.env
