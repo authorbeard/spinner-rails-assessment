@@ -20,6 +20,7 @@ class AlbumsController < ApplicationController
   end
 
   def add
+# byebug
     current_user.albums << @album
     redirect_to :back, :notice=>"Awesome choice! <a href='#{album_path(@album)}'>Spin it now</a>"
   end
@@ -38,7 +39,7 @@ class AlbumsController < ApplicationController
   end
 
   def update
-
+# byebug
     @album.update(album_params)
     redirect_to album_path(@album)
   end
@@ -51,7 +52,6 @@ class AlbumsController < ApplicationController
     render plain: data
   # byebug
   end
-
 
   def destroy
 

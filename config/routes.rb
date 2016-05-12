@@ -16,17 +16,22 @@ Rails.application.routes.draw do
   get '/albums/:id/import_songs', to: 'albums#import_songs', as: 'import_songs'
   post '/albums/:id/add', to: 'albums#add', as: 'add_album'
 
-  resources :users do 
-    resources :albums
-    post '/add', to: "albums#add", as: "add_album"
+  resources :users 
+  post "user/:id/albums/:id/remove", to: "users#remove_album", as: "remove_album"
+    # post '/albums/:id/add', to: "albums#add", as: "add_album"
     # resources :artists
     # resources :songs
-  end
+  
+  
+  
   
   resources :songs
   post '/songs/new', as: "song_importer"
+  post '/songs/search', to: "songs#search", as: "song_search"
 
-  resources :artists
+  resources :artists do 
+    resources :albums
+  end
 
 
   

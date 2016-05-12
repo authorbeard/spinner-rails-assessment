@@ -19,7 +19,7 @@ class ArtistsController < ApplicationController
   end
 
   def show
-
+byebug
   end
 
   def update

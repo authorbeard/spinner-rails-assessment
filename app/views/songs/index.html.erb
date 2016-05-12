@@ -1,0 +1,11 @@
+<h1>Songs index</h1>
+
+<h2>Song search</h2>
+
+<%= form_tag(song_search_path, method: "post") do %>
+
+  Find some damn songs: <%= label_tag :title %>
+  <%= text_area_tag :title %><br>
+
+  <%= submit_tag "Find these damn songs" %>
+<% end %>

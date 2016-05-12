@@ -2,6 +2,14 @@ class SongsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
 
   def index
+    @songs=Song.all
+  end
+
+  def search
+    
+    @song = Song.find_by(title: params[:title])
+  byebug
+    redirect_to song_path(@song)
   end
 
   def import
@@ -9,6 +17,7 @@ class SongsController < ApplicationController
   end
 
   def show
+    @song=Song.find_by(id: params[:id])
   end
 
   def new
@@ -25,5 +34,6 @@ class SongsController < ApplicationController
 
   def destroy
   end
+
 
 end

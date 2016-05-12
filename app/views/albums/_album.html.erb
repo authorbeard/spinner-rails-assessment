@@ -1,5 +1,5 @@
 
-  <h1><%= link_to album.title, user_album_path(current_user, album) %></h1>
+  <h1><%= link_to album.title, album_path(album) %></h1>
 
   <%= image_tag 'Album_half.jpg' %>
 
@@ -16,27 +16,14 @@
       </ul>
     <% end %>
   <% end %>
+  
+  <%= content_tag :div, class: "spin-it", "data-albid": "#{album.id}" do -%>
+    <%= spin_options(album) %>
+  <% end -%>
 
-
-  <% if current_user.spins(album) == 0 %>
-    <%= button_tag "Spin it!", {class: "spin-it", id: "album-#{album.id}", data: "#{album.id}"} %>
-  <% else %>
-    <table layout="fixed" width=50%>
-      <tr align="left">
-        <th><h4>spin count</h4></th>
-        <th>Last Spun: </th>
-        <%= button_tag "Spin it again!", {class: "spin-it", id: "album-#{album.id}", data: "#{album.id}"}%>
-      </tr>
-      <tr>
-        <td class="user-spins"><%= current_user.spins(album) %></td>
-        <td class="last-user-spin"><%= album.last_spun.strftime("%A, %B %C")%></td>
-      </tr>
-    </table>
-  <% end %>
+  <br></br>
 
     
-    <br></br>
-    
-    <%= button_to "Edit album", edit_user_album_path(current_user, album), method: :get %> 
-    <%= button_to "Fuckit, I don't want this one anymore", user_album_path(current_user, album), method: :delete %>
+  <%= button_to "Edit album", edit_album_path(album), method: :get %> 
+  <%= button_to "Fuckit, I don't want this one anymore", remove_album_path(current_user, album) %>
   <br></br>

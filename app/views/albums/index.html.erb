@@ -11,13 +11,13 @@
       <th><h4> Artist<h4></th>
       <th><h4> Release date<h4></th>
       <th><h4> In collection?</h4></th>
-      <th><h4> Find on Discogs </h4></th>
+      <th><h4> Discogs.com </h4></th>
     </tr>
     <% @albums.each do |a| %>
     <tr align="left">
       <td><%= link_to a.title, album_path(a)%></td>
       <td><%= display_album_artist(a) %>
-      <td><%= add_album_button(a) %></td>
+      <td><%= update_album_button(a) %></td>
       <td><%= user_has(a) %></td>
       <td><%= see_or_find_on_discogs(a) %></td>
     </tr>

@@ -13,7 +13,14 @@ class UsersController < ApplicationController
     redirect_to user_path(@user)
   end
 
+  def remove_album
+byebug
+    album=Album.find_by(id: params[:id])
+    @user.albums.delete(Album.find_by(id: params[:id]))
+    redirect_to user_path(@user)
+  end
+
   def user_params
-    params.require(:user).permit(:name, :email)
+    params.require(:user).permit(:id, :name, :email)
   end
 end
