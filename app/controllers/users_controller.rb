@@ -3,13 +3,14 @@ class UsersController < ApplicationController
 
   def show
 byebug
+    
     # current_user=User.find(1)
-    ua=current_user.user_albums.map{|a| { Album.find(a.album_id).title => a}}
+    # ua=current_user.user_albums.map{|a| alb = [ a, current_user.albums.pluck(:title)]}
     # @user_albums=current_user.albums
 
     respond_to do |format|
       format.html { render :show, :locals=>{user_albums: current_user.albums}}
-      format.json { render json: ua }
+      format.json { render json: current_user }
     end
 
   end
