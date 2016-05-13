@@ -7,7 +7,7 @@ class AlbumsController < ApplicationController
   end
 
   def show
-
+# byebug
   end
 
   def new
@@ -27,6 +27,8 @@ class AlbumsController < ApplicationController
   def create
     @album=Album.new(album_params)
     if @album.save!
+      current_user.albums << @album
+
       redirect_to album_path(@album)
     else
       redirect_to :back, :alert=>"Check that album info again."
@@ -38,6 +40,7 @@ class AlbumsController < ApplicationController
   end
 
   def update
+  byebug
     @album.update(album_params)
     redirect_to album_path(@album)
   end
@@ -66,7 +69,7 @@ class AlbumsController < ApplicationController
   end
 
   def album_params
-    params.require(:album).permit(:title, :catalog_no, :group, :rel_date, :rel_id, :acquired, :search_q, :alb_url, :artist_id, :artist_attributes=>[:name], :songs_attributes=>[:title, :song_ids=>[]])
+    params.require(:album).permit(:title, :artist_name, :catalog_no, :group, :rel_date, :rel_id, :acquired, :search_q, :alb_url, :artist_id, :song_ids=>[], :artist_attributes=>[:name], :songs_attributes=>[:title, :song_ids=>[]])
   end
 
 end

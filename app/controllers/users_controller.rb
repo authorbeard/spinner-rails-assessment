@@ -2,11 +2,6 @@ class UsersController < ApplicationController
   before_action :set_user, :authenticate_user!
 
   def show
-# byebug
-    
-    # current_user=User.find(1)
-    # ua=current_user.user_albums.map{|a| alb = [ a, current_user.albums.pluck(:title)]}
-    # @user_albums=current_user.albums
 
     respond_to do |format|
       format.html { render :show, :locals=>{user_albums: current_user.albums}}
@@ -24,7 +19,6 @@ class UsersController < ApplicationController
   end
 
   def remove_album
-byebug
     album=Album.find_by(id: params[:id])
     @user.albums.delete(Album.find_by(id: params[:id]))
     redirect_to user_path(@user)

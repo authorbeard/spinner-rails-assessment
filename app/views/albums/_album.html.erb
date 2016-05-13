@@ -20,9 +20,6 @@
   <%= content_tag :div, class: "spin-it", "data-albid": "#{album.id}" do -%>
     <%= spin_options(album) %>
   <% end -%>
-
-  <br></br>
-
     
   <%= button_to "Edit album", edit_album_path(album), method: :get %> 
   <%= button_to "Fuckit, I don't want this one anymore", remove_album_path(current_user, album) %>

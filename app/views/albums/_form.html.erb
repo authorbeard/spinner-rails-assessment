@@ -1,26 +1,31 @@
-  <%= form_for @album do |f| %>
-  
-  <%= f.label :title %> <%= f.text_field :title %><br>
 
-  <%= f.label :artist_id %> <%= f.collection_select :artist_id, Artist.order(:name), :id, :name %><br>
-    
-    <%= f.fields_for :artist_attributes do |a| %>
-      <li>Can't find it? Enter it here: <%= a.text_field :name %></li><br>
-    <% end %>
+<%= form_for album do |f| %>
   
-  <% if !@album.songs.empty? %>
-    <%= f.fields_for :songs_attributes do |s| %>
-      <h5>Current songs: </h5>
-          <%= s.collection_check_boxes :song_ids, Song.all, :id, :title %><br>
+  <%= f.label :title %>:  <%= f.text_field :title %><br>
+  <%= f.label :artist %>: <%= f.collection_select :artist_id, Artist.order(:name), :id, :name, include_blank: true %><br>
 
-      <h5><%= s.label "Or be sloppy and enter tracks yourself" %></h5>
-          <%= s.text_area :title, :autocomplete=>:off %><br>
+  <% if !album.songs.empty? %>
+    <% if album.id %>
+      <div class="existing-songs">
+        <h5>Current songs: </h5>
+        <%= f.collection_check_boxes :song_ids, album.songs, :id, :title %>
+      </div> 
     <% end %>
   <% else %>
-    <h3><%= link_to "Import this album's songs", song_importer_path(@album) %><h3>
+    <div class="song-import">
+        <%= link_to "Get songs!", import_songs_path %>
+    </div>
+    <div class="existing-songs">
+      <%= f.collection_check_boxes :songs, Song.order(:artist_id), :id, :title %>
+    </div>
   <% end %>
 
-  
+  <%= f.fields_for :songs_attributes do |s| %>
+    <h5>Wanna add some other songs?</h5>
+    <%= s.collection_check_boxes :song_ids, Song.order(:artist_id), :id, :title %>
+  <% end %>
+
+
 
   <%= f.submit %>
   <%= button_to "Cancel", :back %>
