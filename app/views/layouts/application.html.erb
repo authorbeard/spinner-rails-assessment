@@ -9,15 +9,16 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"></link>
   </head>
   <body>
-  <div class= "container">  <!--  navbar -->
-    <%= render "layouts/navigation" %> 
+    <div class= "container">  <!--  navbar -->
+      <%= render "layouts/navigation" %> 
 
-      <div class="messages">
-         <%= render 'layouts/messages' %>
+        <div class="messages">
+           <%= render 'layouts/messages' %>
+        </div>
+        <!-- content -->
+      <div class="page-content">
+        <%= yield %>
       </div>
-      <!-- content -->
-      <%= yield %>
-       
     </div> 
   </body>
 </html>

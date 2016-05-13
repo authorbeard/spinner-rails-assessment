@@ -47,11 +47,11 @@ class AlbumsController < ApplicationController
   def spin   
  
     current_user.spin_it(@album)
-    @u_album=UserAlbum.where(user_id: current_user.id).find_by(album_id: (@album.id))
+    @album=UserAlbum.where(user_id: current_user.id).find_by(album_id: (@album.id))
     # spins = current_user.spins(@album)
     # data={ "album": @album.id, "spins": spins}.to_json
-  
-    render json: @u_album
+byebug
+    render json: @album
 
  
   end

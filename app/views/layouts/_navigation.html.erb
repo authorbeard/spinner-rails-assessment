@@ -17,6 +17,9 @@
         <li class="active">
           <!-- options for "active" linke -->
           <li><%= link_to "Show me everything", albums_path%><span class="sr-only">(current)</span></li>
+          <% if current_user %>
+            <li><%= link_to "Take me to my albums", user_path(current_user), {class: "user-show", "data-uid": "#{current_user.id}"}%></li>
+          <% end %>
         </li>
         <!-- end options for "active" link (move to helper) -->
 

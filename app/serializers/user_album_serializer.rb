@@ -1,4 +1,5 @@
 class UserAlbumSerializer < ActiveModel::Serializer
-  attributes :id, :spins, :last_spun
-  has_one :album, serializer: AlbumSerializer
+  attributes :spins, :last_spun
+  has_many :albums, only: [:id, :name]
+  has_one :user
 end

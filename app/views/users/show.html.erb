@@ -1,7 +1,7 @@
 <h1>PLAY SOME DAMN RECORDS</h1>
 
 
-<% current_user.albums.each do |a| %>
+<% user_albums.each do |a| %>
   
   <%= render partial: "albums/album", locals: {album: a} %> 
 
