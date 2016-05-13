@@ -1,0 +1,37 @@
+
+function getUserAlbums(obj){
+
+  event.preventDefault()
+  var target = obj["currentTarget"]
+  var path = target["pathname"]
+  $.get(path + ".json", buildAlbumDivs)
+}
+
+function buildAlbumDivs(arr){
+
+  var albums = arr.user.albums
+  var spinInfo = arr.user.user_albums
+  var page = $("div.page-content").html("<h1>PLAY SOME DAMN RECORDS</h1>")
+  if (arr.user.name !== undefined){
+    var greeting = page.text()
+    greeting += ", " + arr.user.name
+  
+    page.html("<h1>" + greeting + "</h1>") 
+  }
+
+  var content = ""
+  var url = "http://localhost:3000/"
+
+  $.each(albums, function(i, alb){
+    content += "<h1><a href='" + url + "albums/" + alb.id + "'>" + alb.title + "</a></h1>"
+    // content += "<%= image_tag('Album_half.jpg') %>"
+    content += "<h2>by " + alb.artist["name"] + "</h2>"
+    content += "<h3><a href='" + url + "albums/" + alb.id + "/import_songs'>Get this album's tracks</a></h3>"
+    content += albumSpinDisplay(spinInfo[i])
+  })
+
+  page.append(content)
+
+}
+
+

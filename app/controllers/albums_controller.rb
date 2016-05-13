@@ -20,7 +20,6 @@ class AlbumsController < ApplicationController
   end
 
   def add
-# byebug
     current_user.albums << @album
     redirect_to :back, :notice=>"Awesome choice! <a href='#{album_path(@album)}'>Spin it now</a>"
   end
@@ -39,7 +38,6 @@ class AlbumsController < ApplicationController
   end
 
   def update
-# byebug
     @album.update(album_params)
     redirect_to album_path(@album)
   end
@@ -50,7 +48,6 @@ class AlbumsController < ApplicationController
     @album=UserAlbum.where(user_id: current_user.id).find_by(album_id: (@album.id))
     # spins = current_user.spins(@album)
     # data={ "album": @album.id, "spins": spins}.to_json
-byebug
     render json: @album
 
  

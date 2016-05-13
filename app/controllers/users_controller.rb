@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, :authenticate_user!
 
   def show
-byebug
+# byebug
     
     # current_user=User.find(1)
     # ua=current_user.user_albums.map{|a| alb = [ a, current_user.albums.pluck(:title)]}

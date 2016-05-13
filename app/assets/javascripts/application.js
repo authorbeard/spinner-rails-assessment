@@ -5,7 +5,7 @@
 //= require users.js
 //= require albums.js
 
-$(document).ready(function(){
+$(function(){
   attachListeners()
 })
 
