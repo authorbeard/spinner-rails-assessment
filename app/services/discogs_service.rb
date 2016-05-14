@@ -49,7 +49,7 @@ class DiscogsService
   ### STRING COMES BACK LIKE THIS: "http://localhost:3000/callback?oauth_token=GdhgMjxQAvXJkmLFYQffINPlkEqHXMHpDWgUhZFE&oauth_verifier=TYgSlghNdL"
   ### string.split("?")[0] -- returns string ready to be processed as above
   ### call extract_tokens with the above: self.WHUT=
-  token_hash=extract_tokens(string.split("?")[1])
+  ex_hash=extract_tokens(string.split("?")[1])
 
     ex_token_url = DISCOGS_INFO[:main_url] + "oauth/access_token"
     
@@ -58,16 +58,18 @@ class DiscogsService
       req["Data-Type"]="jsonp"
       req["Authorization"]="OAuth oauth_consumer_key=#{DISCOGS_INFO[:d_key]}",
         "oauth_nonce=#{ActionController::HttpAuthentication::Digest.nonce(Time.now)}",
-        "oauth_token=#{token_hash["oauth_token"]}",
+        "oauth_token=#{ex_hash["oauth_token"]}",
         "oauth_signature=#{DISCOGS_INFO[:d_secret]}&#{DISCOGS_INFO[:exchange_secret]}",
         "oauth_signature_method=PLAINTEXT",
         "oauth_timestamp=#{Time.now.to_i.to_s}",
-        "oauth_verifier=#{token_hash["oauth_verifier"]}"
+        "oauth_verifier=#{ex_hash["oauth_verifier"]}"
       req["User-Agent"]="Spinner for Discogs"
     end
+# byebug
+    user_hash=extract_tokens(response.env.body)
+  byebug
+    ## Then add this to the user
 
-
-byebug
 
   end
 

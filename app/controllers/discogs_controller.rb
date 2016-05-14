@@ -20,8 +20,9 @@ byebug
 
     #handle callback
     discogs=DiscogsService.new
-    discogs.exchange_token(auth_string)
+    testresp = discogs.exchange_token(auth_string)
 byebug
+    render plain: testresp
 
   end
 
