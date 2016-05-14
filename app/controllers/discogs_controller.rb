@@ -7,7 +7,7 @@ class DiscogsController < ApplicationController
     token=discogs.auth_hash["oauth_token"]
     # secret=discogs.auth_hash["oauth_token_secret"] ###<--add to discogs secret in exch_token
     # call_conf=discogs.auth_hash["oauth_callback_confirmed"]
-byebug
+# byebug
     redirect_to("https://discogs.com/oauth/authorize?oauth_token=#{token}")
   end
 
@@ -20,8 +20,9 @@ byebug
 
     #handle callback
     discogs=DiscogsService.new
-    testresp = discogs.exchange_token(auth_string)
+    discogs.exchange_token(auth_string)
 byebug
+    current_user.discogs=discogs.user_hash ###<--makes each attr accessible as .whatever
     render plain: testresp
 
   end

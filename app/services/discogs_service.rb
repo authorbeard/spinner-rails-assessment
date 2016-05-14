@@ -1,5 +1,5 @@
 class DiscogsService
-  attr_accessor :auth_hash 
+  attr_accessor :auth_hash, :user_hash
 
   DISCOGS_INFO = { main_url: "https://api.discogs.com/",
                    d_key: Figaro.env.discogs_key,
@@ -14,7 +14,7 @@ class DiscogsService
   def get_req_token
 
     req_token_url = DISCOGS_INFO[:main_url] + "oauth/request_token"
-# byebug
+
     response=Faraday.get(req_token_url) do |req|
       req["Content-Type"]="application/json"
       req["Data-Type"]="jsonp"
@@ -27,28 +27,14 @@ class DiscogsService
       req["User-Agent"]="Spinner for Discogs"
     end
 
-# byebug
-    ### pass response.body to extract_tokens
-    # strings=response.body.split("&") 
-    # auth={}
-    # strings.each do |i|
-    #   arr=i.split("=")
-    #   auth[arr[0]]=arr[1]
-    # end
-    # secret=discogs.auth_hash["oauth_token_secret"]
-
     self.auth_hash=extract_tokens(response.body)
     DISCOGS_INFO[:exchange_secret] = self.auth_hash["oauth_token_secret"]
-# byebug
 
   end
 
+
   def exchange_token(string)
-# byebug
-  #### NEED TOKEN RECEIVED IN CALLBACK PLUS USERS_VERIFIER ###
-  ### STRING COMES BACK LIKE THIS: "http://localhost:3000/callback?oauth_token=GdhgMjxQAvXJkmLFYQffINPlkEqHXMHpDWgUhZFE&oauth_verifier=TYgSlghNdL"
-  ### string.split("?")[0] -- returns string ready to be processed as above
-  ### call extract_tokens with the above: self.WHUT=
+
   ex_hash=extract_tokens(string.split("?")[1])
 
     ex_token_url = DISCOGS_INFO[:main_url] + "oauth/access_token"
@@ -66,7 +52,7 @@ class DiscogsService
       req["User-Agent"]="Spinner for Discogs"
     end
 # byebug
-    user_hash=extract_tokens(response.env.body)
+    self.user_hash=extract_tokens(response.env.body)
   byebug
     ## Then add this to the user
 
