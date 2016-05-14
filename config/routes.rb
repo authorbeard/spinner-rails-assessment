@@ -34,6 +34,11 @@ Rails.application.routes.draw do
   end
 
 
+  get "/auth", to: "discogs#auth", as: "authorize_discogs"
+  get "/callback", to: "discogs#callback", as: "discogs_callback"
+
+
+
   
 
 ### Routes from discogs-wrapper readme. not sure they're needed.

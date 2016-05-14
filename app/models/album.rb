@@ -20,7 +20,7 @@ class Album < ActiveRecord::Base
 
   def songs_attributes=(attributes)
     if !attributes.empty?
-      self.songs.delete_all
+      # self.songs.delete_all
       if attributes["song_ids"]
     byebug
         songs=attributes["song_ids"].delete_if{|i| i==""}

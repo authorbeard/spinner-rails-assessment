@@ -1,0 +1,6 @@
+class DiscogsController < ApplicationController
+
+
+  
+
+end

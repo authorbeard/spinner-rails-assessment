@@ -3,26 +3,32 @@
   
   <%= f.label :title %>:  <%= f.text_field :title %><br>
   <%= f.label :artist %>: <%= f.collection_select :artist_id, Artist.order(:name), :id, :name, include_blank: true %><br>
+  <%= f.label "Can't find your artist? " %>
+  <%= f.fields_for :artist_params do |a| %>
+    <%=a.text_field :name %>
+  <% end %>
 
-  <% if !album.songs.empty? %>
+  <% if album.songs.empty? %>
     <% if album.id %>
-      <div class="existing-songs">
-        <h5>Current songs: </h5>
-        <%= f.collection_check_boxes :song_ids, album.songs, :id, :title %>
-      </div> 
-    <% end %>
-  <% else %>
-    <div class="song-import">
-        <%= link_to "Get songs!", import_songs_path %>
-    </div>
+      <div class="song-import">
+          <%= link_to "Get my songs for me!", import_songs_path %>
+      </div>
+
     <div class="existing-songs">
       <%= f.collection_check_boxes :songs, Song.order(:artist_id), :id, :title %>
     </div>
+    <% end %>
+  <% else %>
+    <div class="existing-songs">
+      <h5>Current songs: </h5>
+        <%= f.collection_check_boxes :song_ids, album.songs, :id, :title %>
+    </div> 
   <% end %>
 
+
   <%= f.fields_for :songs_attributes do |s| %>
-    <h5>Wanna add some other songs?</h5>
-    <%= s.collection_check_boxes :song_ids, Song.order(:artist_id), :id, :title %>
+    <h5>Here's the songs we have so far:</h5>
+    <%= s.collection_check_boxes :song_ids, Song.order(:artist_id), :id, :title %><br>
   <% end %>
 
 
