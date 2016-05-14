@@ -12,6 +12,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
+  def discogs
+byebug
+
+  end
+
+
   def failure
     redirect_to root_path
   end

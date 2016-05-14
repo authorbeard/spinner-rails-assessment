@@ -1,24 +1,27 @@
 class DiscogsController < ApplicationController
 
 
-  def auth
-# byebug
+  def start_req
     discogs=DiscogsService.new
-    auth_hash=discogs.get_token
-  # byebug
+    auth_hash=discogs.get_req_token
     token=discogs.auth_hash["oauth_token"]
-    secret=discogs.auth_hash["oauth_token_secret"]
-    call_conf=discogs.auth_hash["oauth_callback_confirmed"]
-
-    resp = redirect_to("https://discogs.com/oauth/authorize?oauth_token=#{token}")
+    # secret=discogs.auth_hash["oauth_token_secret"] ###<--add to discogs secret in exch_token
+    # call_conf=discogs.auth_hash["oauth_callback_confirmed"]
+byebug
+    redirect_to("https://discogs.com/oauth/authorize?oauth_token=#{token}")
   end
 
   def callback
 
-    ### RIGHT NOW, GETING THIS AFTER REDEIRECT ###
-    # https://www.discogs.com/%27http://localhost:3000/auth%27?oauth_token=umcXWiKsiKGPouttmAgRTtgXMZCQwLzZsBwTwZFi&oauth_verifier=csUGJskvhc
+    ### GRAB RELEVANT RESPONSE INFO, HAND OFF TO EXCHANGER ###
+    # token_params=response.WHUT
 
-    byebug
+    auth_string = response.request.env["REQUEST_URI"]
+
+    #handle callback
+    discogs=DiscogsService.new
+    discogs.exchange_token(auth_string)
+byebug
 
   end
 
