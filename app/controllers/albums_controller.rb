@@ -7,7 +7,7 @@ class AlbumsController < ApplicationController
   end
 
   def show
-# byebug
+    
   end
 
   def new
