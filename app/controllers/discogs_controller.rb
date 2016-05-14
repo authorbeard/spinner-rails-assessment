@@ -2,18 +2,21 @@ class DiscogsController < ApplicationController
 
 
   def auth
-
+# byebug
     discogs=DiscogsService.new
-  byebug
-    token_hash = discogs.get_token
-    token=token_hash["oauth_token"]
-    secret=token_hash["oauth_token_secret"]
-    call_conf=token_hash["oauth_callback_confirmed"]
+    auth_hash=discogs.get_token
+  # byebug
+    token=discogs.auth_hash["oauth_token"]
+    secret=discogs.auth_hash["oauth_token_secret"]
+    call_conf=discogs.auth_hash["oauth_callback_confirmed"]
 
-    redirect_to "https://discogs.com/oauth/authorize?oauth_token=token"
+    resp = redirect_to("https://discogs.com/oauth/authorize?oauth_token=#{token}")
   end
 
   def callback
+
+    ### RIGHT NOW, GETING THIS AFTER REDEIRECT ###
+    # https://www.discogs.com/%27http://localhost:3000/auth%27?oauth_token=umcXWiKsiKGPouttmAgRTtgXMZCQwLzZsBwTwZFi&oauth_verifier=csUGJskvhc
 
     byebug
 

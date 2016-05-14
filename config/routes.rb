@@ -35,7 +35,7 @@ Rails.application.routes.draw do
 
 
   get "/auth", to: "discogs#auth", as: "authorize_discogs"
-  get "/callback", to: "discogs#callback", as: "discogs_callback"
+  get "/callback:opts", to: "discogs#callback", as: "discogs_callback"
 
 
 
