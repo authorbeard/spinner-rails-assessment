@@ -15,7 +15,7 @@ $(document).on("page:update", function(){
 function attachListeners(){
   $("button.spin-it").click(albumSpinner)
   $("a.user-show").click(getUserAlbums)
-  $("#discogs-search").submit(searchDicogs)
+  $("#discogs-search").submit(searchDiscogs)
 
 }
 

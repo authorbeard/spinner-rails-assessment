@@ -17,7 +17,14 @@
     </div>
     <form class="navbar-form navbar-right" role="search" id="discogs-search">
       <div class="form-group">
-        <input type="text" class="form-control" id="discogs-query" name="discogs-query"></input>
+        <%= fields_for :discogs_search do |f| %>
+          <%= f.text_field :q, placeholder: "Search Discogs" %><br>
+          <%= f.check_box :format, {}, :album, nil %><%= f.label "Search album title " %>
+          <%= f.check_box :type, {}, :artist, nil %><%= f.label "Search artist name " %>
+ 
+        <% end %>
+        <!-- <input type="text" class="form-control" id="discogs-query" name="discogs-query"></input> -->
+
       </div>
       <button type="submit" class="btn btn-discogs">Submit</button>
     </form>

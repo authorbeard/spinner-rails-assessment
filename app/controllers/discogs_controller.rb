@@ -24,9 +24,12 @@ class DiscogsController < ApplicationController
 
   def search
 # byebug
-    discogs=DiscogsService.new
-    results=discogs.search(params["discogs-query"], current_user.oauth_token, current_user.oauth_token_secret)
+    # redirect_to collection_path(current_user), :alert=>"C'mon, buddy, gimme something to work with" unless !params["discogs_search"]["query"].empty? 
+
 # byebug
+    discogs=DiscogsService.new
+    results=discogs.search(params["discogs_search"], current_user.oauth_token, current_user.oauth_token_secret)
+byebug
     render json: results
 
 

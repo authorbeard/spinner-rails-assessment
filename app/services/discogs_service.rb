@@ -53,14 +53,14 @@ class DiscogsService
     self.user_hash=extract_tokens(response.env.body)
   end
 
-  def search(search_terms, token, secret)
-  # byebug
+  def search(search_params, token, secret)
+  byebug 
 
     url = @discogs_info[:main_url] + "database/search"
 
     query=Faraday.get(url) do |req|
       # req["User-Agent"]="Spinner for Discogs"
-      req.params["q"]="#{search_terms}"
+      req.params=search_params
       # req["Content-Type"]="application/json"
       # req["Data-Type"]="jsonp"
       req["Authorization"]="OAuth oauth_consumer_key=#{@discogs_info[:d_key]}",
@@ -71,7 +71,8 @@ class DiscogsService
         "oauth_nonce=#{ActionController::HttpAuthentication::Digest.nonce(Time.now)}"
     end
     byebug
-    
+    results=query.body
+
 
   end
 

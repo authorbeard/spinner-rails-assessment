@@ -1,9 +1,14 @@
 
-function searchDicogs(event){
+function searchDiscogs(event){
   event.preventDefault()
   // console.log(data)
   // debugger;
   var query = $(this).serialize() //<--returns string w/input name 
-  var results = $.post("/discogs/search", query)
-  debugger;
+  var searching = $.post("/discogs/search", query)
+  searching.done(function(data){
+    var options=data.results
+    console.log(data)
+    debugger;
+  })
+ 
 }
