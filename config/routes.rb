@@ -37,7 +37,7 @@ Rails.application.routes.draw do
 
   get "/auth", to: "discogs#start_req", as: "authorize_discogs"
   get "/callback", to: "discogs#callback", as: "discogs_callback"
-  post "/search", to: "discogs#search", as: "discogs_search"
+  post "/discogs/search", to: "discogs#search", as: "discogs_search"
 
 
   

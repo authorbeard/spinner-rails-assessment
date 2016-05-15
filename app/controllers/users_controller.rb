@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def collection
-    
+# byebug 
   end
 
   def remove_album

@@ -1,6 +1,9 @@
 
-function searchDicogs(data){
+function searchDicogs(event){
   event.preventDefault()
-  
-  $(".page-content").html("<h1>Yup!</h1>")
+  // console.log(data)
+  // debugger;
+  var query = $(this).serialize() //<--returns string w/input name 
+  var results = $.post("/discogs/search", query)
+  debugger;
 }

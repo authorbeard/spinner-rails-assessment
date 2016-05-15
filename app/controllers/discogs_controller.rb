@@ -23,8 +23,11 @@ class DiscogsController < ApplicationController
   end
 
   def search
+# byebug
     discogs=DiscogsService.new
-    discogs.search
+    results=discogs.search(params["discogs-query"], current_user.oauth_token, current_user.oauth_token_secret)
+# byebug
+    render json: results
 
 
   end
@@ -36,8 +39,8 @@ class DiscogsController < ApplicationController
     #   !!session[:discogs_token]      
     # end
 
-    def default_url_options 
-      {Authorization: current_user.discogs}
-    end
+    # def default_url_options 
+    #   {Authorization: current_user.discogs}
+    # end
 
 end
