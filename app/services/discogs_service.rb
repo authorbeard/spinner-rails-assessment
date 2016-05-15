@@ -59,10 +59,9 @@ class DiscogsService
     url = @discogs_info[:main_url] + "database/search"
 
     query=Faraday.get(url) do |req|
-      # req["User-Agent"]="Spinner for Discogs"
       req.params=search_params
-      # req["Content-Type"]="application/json"
-      # req["Data-Type"]="jsonp"
+      req.params["page"] = 1
+      req.params["per_page"]=5
       req["Authorization"]="OAuth oauth_consumer_key=#{@discogs_info[:d_key]}",
         "oauth_token=#{token}",
         "oauth_signature=#{@discogs_info[:d_secret]}&#{secret}",
