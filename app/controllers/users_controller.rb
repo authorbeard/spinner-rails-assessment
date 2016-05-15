@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, :authenticate_user!
 
   def show
-
+# byebug
     respond_to do |format|
       format.html { render :show, :locals=>{user_albums: current_user.albums}}
       format.json { render json: current_user }
@@ -16,6 +16,10 @@ class UsersController < ApplicationController
   def update
     @user.update(user_params)
     redirect_to user_path(@user)
+  end
+
+  def collection
+    
   end
 
   def remove_album

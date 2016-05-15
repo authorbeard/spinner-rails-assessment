@@ -2,10 +2,12 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
-//= require users.js
+//= require users.js.erb
 //= require albums.js
+//= require discogs.js
 
-$(function(){
+$(document).on("page:update", function(){
+  // debugger;
   attachListeners()
 })
 
@@ -13,5 +15,7 @@ $(function(){
 function attachListeners(){
   $("button.spin-it").click(albumSpinner)
   $("a.user-show").click(getUserAlbums)
+  // $("#discogs-search").submit(searchDicogs)
+
 }
 

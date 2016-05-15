@@ -1,3 +1,4 @@
+
 function albumSpinner(data){
 
   var id = parseInt($(this).attr("data"))
@@ -7,8 +8,6 @@ function albumSpinner(data){
     var spinOpts = albumSpinDisplay(data)
     $(selector).html(spinOpts)
   })
-
-
 }
 
 function albumSpinDisplay(data){
@@ -23,7 +22,7 @@ function albumSpinDisplay(data){
   var spinOptions = ""
   spinOptions += "<h2>Spin count: " + album.spins + "</h2>"
   spinOptions += "<h3>Last Spun: " + Date().split(" ").slice(0,4).join(" ") + "</h3>"
-  spinOptions += "<button class: 'spin-it' id='album-" + id + "' data='" + id + "'>Spin it!</button>"
+  spinOptions += "<button class='spin-it' id='album-" + id + "' data='" + id + "'>Spin it!</button>"
   return spinOptions
 
 }

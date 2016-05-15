@@ -35,8 +35,7 @@ class DiscogsService
 
   def exchange_token(string)
 
-  ex_hash=extract_tokens(string.split("?")[1])
-
+    ex_hash=extract_tokens(string.split("?")[1])
     ex_token_url = DISCOGS_INFO[:main_url] + "oauth/access_token"
     
     response=Faraday.post(ex_token_url) do |req|
@@ -51,13 +50,10 @@ class DiscogsService
         "oauth_verifier=#{ex_hash["oauth_verifier"]}"
       req["User-Agent"]="Spinner for Discogs"
     end
-# byebug
+    
     self.user_hash=extract_tokens(response.env.body)
-  byebug
-    ## Then add this to the user
-
-
   end
+
 
   def extract_tokens(strings_array)
     strings=strings_array.split("&")

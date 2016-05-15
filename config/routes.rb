@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   post '/albums/:id/add', to: 'albums#add', as: 'add_album'
 
   resources :users 
-  post "user/:id/albums/:id/remove", to: "users#remove_album", as: "remove_album"
+  post "users/:id/albums/:id/remove", to: "users#remove_album", as: "remove_album"
+  get "users/:id/collection", to: "users#collection", as: "collection"
     # post '/albums/:id/add', to: "albums#add", as: "add_album"
     # resources :artists
     # resources :songs
@@ -36,7 +37,7 @@ Rails.application.routes.draw do
 
   get "/auth", to: "discogs#start_req", as: "authorize_discogs"
   get "/callback", to: "discogs#callback", as: "discogs_callback"
-
+  post "/search", to: "discogs#search", as: "discogs_search"
 
 
   
