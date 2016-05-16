@@ -1,7 +1,7 @@
 function importAlbum(data){
   debugger;
   var alb = $(this).attr("data-alb")
-  $.post("albums", {album: alb}, "json")
+  $.post("albums/discogs_import", {album: alb}, "json")
 }
 
 

@@ -26,8 +26,6 @@ class AlbumsController < ApplicationController
 
   def create
   byebug
-  #### THIS WORKS, FIGURE OUT HOW TO ROUTE JSON DIFFERENTLY ###
-    # @album.new(JSON.parse(params["album"]))
 
     @album=Album.new(album_params)
     if @album.save!
@@ -56,8 +54,15 @@ class AlbumsController < ApplicationController
     # spins = current_user.spins(@album)
     # data={ "album": @album.id, "spins": spins}.to_json
     render json: @album
+  end
 
- 
+  def discogs_import
+     #### THIS WORKS, FIGURE OUT HOW TO ROUTE JSON DIFFERENTLY ###
+    # @album.new(JSON.parse(params["album"]))
+    if @album.save!
+      redirect_to album_path(@album)
+    end
+    
   end
 
   def destroy

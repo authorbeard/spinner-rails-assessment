@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post '/albums/:id/spin', to: 'albums#spin', as: "spin"
   get '/albums/:id/import_songs', to: 'albums#import_songs', as: 'import_songs'
   post '/albums/:id/add', to: 'albums#add', as: 'add_album'
+  post '/albums/discogs_import', to: 'albums#dicogs_import'
 
   resources :users do
     resources :albums, only: [:create]
@@ -40,6 +41,7 @@ Rails.application.routes.draw do
   get "/auth", to: "discogs#start_req", as: "authorize_discogs"
   get "/callback", to: "discogs#callback", as: "discogs_callback"
   post "/discogs/search", to: "discogs#search", as: "discogs_search"
+
 
 
   
