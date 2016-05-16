@@ -1,7 +1,8 @@
 function importAlbum(data){
-  debugger;
   var alb = $(this).attr("data-alb")
-  $.post("albums/discogs_import", {album: alb}, "json")
+  $.post("albums", {album: alb}, "json").success(function(data){
+  debugger;
+  })
 }
 
 
@@ -33,4 +34,8 @@ function albumSpinDisplay(data){
 
 }
 
+function buildAlbumShow(albObj){
+
+  
+}
 

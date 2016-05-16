@@ -37,7 +37,7 @@ class Album < ActiveRecord::Base
   end
 
   def artist_name
-    artist.name
+    artist ? artist.name : nil
   end
 
   def total_spins

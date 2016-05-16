@@ -1,6 +1,5 @@
 
 function searchDiscogs(event){
-  // event.preventDefault()
   var formattedResults
   var query = $(this).serialize() //<--returns string w/input name 
   // debugger;
@@ -11,7 +10,6 @@ function searchDiscogs(event){
 
   search.done(function(){
     $.each(formattedResults, function(i, result){
-      // debugger;
       $(".search-results").append(result)
     })
   })
@@ -22,6 +20,7 @@ function searchDiscogs(event){
 //THIS RETURNS AN ARRAY OF STRINGS
 function buildResults(array){
   var results=[]
+
   $.each(array, function(i, res){
     //THIS PASSES EACH OBJECT IN THE RESULTS ARRAY TO THE BUILDER
     var result = new ResultBuilder(res)
@@ -43,19 +42,20 @@ function ResultBuilder(resultObj){
   if (resultObj.type === "master" || resultObj.type === "release"){
     this.type="album"
     var artistTitle=resultObj.title.split(" - ")
-    this.album = new Album(artistTitle, resultObj.catno, resultObj.resource_url, resultObj.year)
+    this.album = new Album(artistTitle, resultObj.catno, resultObj.id, resultObj.resource_url, resultObj.year)
     this.cover = resultObj.thumb
 
-  }else if(resultObj.type==="artists"){
+  }else if(resultObj.type==="artist"){
     this.type="artist"
     this.artist=new Artists(resultObj.name)
   }
 }
 
-function Album(artistTitle, catno, url, year){
+function Album(artistTitle, catno, rel_id, url, year){
   this.title=artistTitle[1]
   this.group=artistTitle[0]
   this.catalog_no=catno
+  this.rel_id=rel_id
   this.alb_url=url
   this.rel_date=year
 }

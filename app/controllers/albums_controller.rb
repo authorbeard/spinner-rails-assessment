@@ -25,16 +25,41 @@ class AlbumsController < ApplicationController
   end
 
   def create
-  byebug
+  # byebug
+    # if URI(request.referrer).path.include?("/collection")
+    #   byebug
+    # end
 
-    @album=Album.new(album_params)
-    if @album.save!
-      current_user.albums << @album
+    respond_to do |format|
+      format.json {
+        # byebug
+          alb_params=JSON.parse(params["album"])
+          album=Album.find_by(title: alb_params["title"])
+          if album 
+            byebug
+            album.update(alb_params)
+          else
+            album=Album.create(alb_params)
+            album.artist=Artist.find_or_create_by(name: album.group)
+          end
 
-      redirect_to album_path(@album)
-    else
-      redirect_to :back, :alert=>"Check that album info again."
+          album.artist=Artist.find_or_create_by(name: album.group)
+          current_user.albums << album
+          album.save
+
+          render json: album
+          # byebug
+      }
     end
+
+    # @album=Album.new(album_params)
+    # if @album.save!
+    #   current_user.albums << @album
+
+    #   redirect_to album_path(@album)
+    # else
+    #   redirect_to :back, :alert=>"Check that album info again."
+    # end
   end
 
   def edit
@@ -59,10 +84,11 @@ class AlbumsController < ApplicationController
   def discogs_import
      #### THIS WORKS, FIGURE OUT HOW TO ROUTE JSON DIFFERENTLY ###
     # @album.new(JSON.parse(params["album"]))
-    if @album.save!
-      redirect_to album_path(@album)
-    end
-    
+  # byebug  
+  #   if @album.save!
+  #     redirect_to album_path(@album)
+  #   end
+
   end
 
   def destroy
