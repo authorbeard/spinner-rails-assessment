@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   get '/albums/:id/import_songs', to: 'albums#import_songs', as: 'import_songs'
   post '/albums/:id/add', to: 'albums#add', as: 'add_album'
 
-  resources :users 
+  resources :users do
+    resources :albums, only: [:create]
+  end
   post "users/:id/albums/:id/remove", to: "users#remove_album", as: "remove_album"
   get "users/:id/collection", to: "users#collection", as: "collection"
     # post '/albums/:id/add', to: "albums#add", as: "add_album"

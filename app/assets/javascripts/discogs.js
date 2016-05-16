@@ -15,6 +15,7 @@ function searchDiscogs(event){
       $(".search-results").append(result)
     })
   })
+
   event.preventDefault()
 }
 
@@ -78,5 +79,7 @@ ResultBuilder.prototype.buildLink=function(){
 }
 
 ResultBuilder.prototype.importThis=function(){
-  return "<h4><a href='/albums/create'>Import this!</a></h4>"
+  // return "<h4><a href='/albums/create'>Import this!</a></h4>"
+  return "<button type='submit' id='import-album' data-alb='" + JSON.stringify(this.album) + "'>Import this one</button>"
+
 }

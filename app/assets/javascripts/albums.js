@@ -1,3 +1,9 @@
+function importAlbum(data){
+  debugger;
+  var alb = $(this).attr("data-alb")
+  $.post("albums", {album: alb}, "json")
+}
+
 
 function albumSpinner(data){
 

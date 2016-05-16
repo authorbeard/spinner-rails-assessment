@@ -26,6 +26,9 @@ class AlbumsController < ApplicationController
 
   def create
   byebug
+  #### THIS WORKS, FIGURE OUT HOW TO ROUTE JSON DIFFERENTLY ###
+    # @album.new(JSON.parse(params["album"]))
+
     @album=Album.new(album_params)
     if @album.save!
       current_user.albums << @album
