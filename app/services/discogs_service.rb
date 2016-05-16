@@ -54,7 +54,7 @@ class DiscogsService
   end
 
   def search(search_params, token, secret)
-  byebug 
+# byebug 
 
     url = @discogs_info[:main_url] + "database/search"
 
@@ -69,7 +69,7 @@ class DiscogsService
         "oauth_timestamp=#{Time.now.to_i.to_s}",
         "oauth_nonce=#{ActionController::HttpAuthentication::Digest.nonce(Time.now)}"
     end
-    byebug
+# byebug
     results=query.body
 
 

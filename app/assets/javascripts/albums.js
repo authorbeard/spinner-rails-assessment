@@ -26,3 +26,5 @@ function albumSpinDisplay(data){
   return spinOptions
 
 }
+
+

@@ -29,7 +29,7 @@ class DiscogsController < ApplicationController
 # byebug
     discogs=DiscogsService.new
     results=discogs.search(params["discogs_search"], current_user.oauth_token, current_user.oauth_token_secret)
-byebug
+# byebug
     render json: results
 
 

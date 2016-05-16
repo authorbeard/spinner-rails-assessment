@@ -25,6 +25,7 @@ class AlbumsController < ApplicationController
   end
 
   def create
+  byebug
     @album=Album.new(album_params)
     if @album.save!
       current_user.albums << @album
