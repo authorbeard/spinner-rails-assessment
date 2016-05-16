@@ -1,7 +1,9 @@
 function importAlbum(data){
   var alb = $(this).attr("data-alb")
   $.post("albums", {album: alb}, "json").success(function(data){
-  debugger;
+    debugger;
+    var alb=data.album
+    $("div.messages").html("<h3><a href='/albums/" + alb.id + "'>Imported" + alb.title + "</a></h3>")
   })
 }
 
@@ -34,8 +36,17 @@ function albumSpinDisplay(data){
 
 }
 
-function buildAlbumShow(albObj){
-
-  
-}
+// function buildAlbumShow(albObj){
+//   // ///THIS IS FROM USER#SHOW, SET UP FOR ARRAY
+//   // ///REFACTOR TO BUILD INDIVIDUAL ALBUM
+//   var content = ""
+//   var url = "http://localhost:3000/"
+//   $.each(albums, function(i, alb){
+//     content += "<h1><a href='" + url + "albums/" + alb.id + "'>" + alb.title + "</a></h1>"
+//     content += "<img src='<%= asset_path("Album_half.jpg") %>' />"
+//     content += "<h2>by " + alb.artist["name"] + "</h2>"
+//     content += "<h3><a href='" + url + "albums/" + alb.id + "/import_songs'>Get this album's tracks</a></h3>"
+//     content += albumSpinDisplay(spinInfo[i])
+//   })
+// }
 

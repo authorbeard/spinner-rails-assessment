@@ -30,6 +30,7 @@ class AlbumsController < ApplicationController
     #   byebug
     # end
 
+
     respond_to do |format|
       format.json {
         # byebug
@@ -46,10 +47,13 @@ class AlbumsController < ApplicationController
           album.artist=Artist.find_or_create_by(name: album.group)
           current_user.albums << album
           album.save
-
-          render json: album
+          @album=album
+          
+          render json: @album
           # byebug
       }
+# byebug
+     
     end
 
     # @album=Album.new(album_params)
