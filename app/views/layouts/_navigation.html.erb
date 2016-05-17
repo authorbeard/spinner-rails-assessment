@@ -44,7 +44,7 @@
                   <%= link_to "Sign me up!", new_user_registration_path%>
                 <% end %></li>
             <li><%= link_to "Log me out", signout_path%></li>
-            <li><% if current_user.oauth_token %> 
+            <li><% if current_user && current_user.oauth_token %> 
                   <%= link_to "Fart around on Discogs, yo", collection_path(current_user) %>
                 <% else %>
                   <%= link_to "Discogs is awesome! Use it here!", authorize_discogs_path %>
@@ -62,7 +62,7 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 
-  <% if current_page?(collection_path :id=>current_user.id) %>
+  <% if current_user && current_page?(collection_path :id=>current_user.id) %>
     <%= render "users/collection_navbar" %>
   <% end %>
 </nav>

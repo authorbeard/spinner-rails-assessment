@@ -2,12 +2,10 @@ class UsersController < ApplicationController
   before_action :set_user, :authenticate_user!
 
   def show
-# byebug
     respond_to do |format|
       format.html { render :show, :locals=>{user_albums: current_user.albums}}
       format.json { render json: current_user }
     end
-
   end
 
   def edit

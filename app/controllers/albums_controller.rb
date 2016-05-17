@@ -25,11 +25,6 @@ class AlbumsController < ApplicationController
   end
 
   def create
-  # byebug
-    # if URI(request.referrer).path.include?("/collection")
-    #   byebug
-    # end
-
 
     respond_to do |format|
       format.json {
@@ -50,7 +45,6 @@ class AlbumsController < ApplicationController
           @album=album
           
           render json: @album
-          # byebug
       }
 # byebug
      
@@ -77,11 +71,8 @@ class AlbumsController < ApplicationController
   end
 
   def spin   
- 
     current_user.spin_it(@album)
     @album=UserAlbum.where(user_id: current_user.id).find_by(album_id: (@album.id))
-    # spins = current_user.spins(@album)
-    # data={ "album": @album.id, "spins": spins}.to_json
     render json: @album
   end
 

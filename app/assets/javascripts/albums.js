@@ -11,9 +11,10 @@ function importAlbum(data){
 function albumSpinner(data){
 
   var id = parseInt($(this).attr("data"))
-  var selector = "div[data-albid='" + id + "'] "
-
+  var selector = "div[data-albid='" + id + "']"
+debugger;
   $.post("/albums/" + id + "/spin", function(data){
+    debugger;
     var spinOpts = albumSpinDisplay(data)
     $(selector).html(spinOpts)
   })
