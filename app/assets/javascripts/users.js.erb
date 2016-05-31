@@ -1,15 +1,13 @@
 
 function getUserAlbums(obj){
-
   event.preventDefault()
+// debugger;
   var target = obj["currentTarget"]
   var path = target["pathname"]
-  // debugger;
   $.get(path + ".json", buildUserShow)
 }
 
 function buildUserShow(arr){
-
   var albums = arr.user.albums
   var spinInfo = arr.user.user_albums
   var page = $("div.page-content").html("<h1>PLAY SOME DAMN RECORDS</h1>")
@@ -19,23 +17,16 @@ function buildUserShow(arr){
     page.html("<h1>" + greeting + "</h1>") 
   }
 
-  var content = ""
   var url = "http://localhost:3000/"
   $.each(albums, function(i, alb){
-    content = "<div data-albid='" + alb.id + "'>"
-    content += "<h1><a href='" + url + "albums/" + alb.id + "'>" + alb.title + "</a></h1>"
-    content += "<img src='<%= asset_path("Album_half.jpg") %>' />"
-    if (alb.artist !== null){
-      content += "<h2>by " + alb.artist["name"] + "</h2>"  
-    }else{
-      content += "<h2><a href='/albums/" + alb.id + "/edit'>Add an Artist</a></h2>"
-    }
-    content += "<h3><a href='" + url + "albums/" + alb.id + "/import_songs'>Get this album's tracks</a></h3>"
-    content += albumSpinDisplay(spinInfo[i])
-    content += "</div>"
+    var albDisp = albumDisplay(alb)
+    var spinDisp = albumSpinDisplay(spinInfo[i])
+    var content = "<div data-albid='" + alb.id + "'>"
+        content += albDisp
+        content += spinDisp
+        content += "</div>"
+    page.append(content)
   })
-
-  page.append(content)
 
 }
 

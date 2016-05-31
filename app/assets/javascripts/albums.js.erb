@@ -1,9 +1,12 @@
 function importAlbum(data){
   var alb = $(this).attr("data-alb")
   $.post("albums", {album: alb}, "json").success(function(data){
-    debugger;
+  
     var alb=data.album
-    $("div.messages").html("<h3><a href='/albums/" + alb.id + "'>Imported" + alb.title + "</a></h3>")
+
+    $('.page-content').html(albumDisplay(alb))
+    // $("div.messages").html("<h3><a href='/albums/" + alb.id + "'>Imported " + alb.title + "</a></h3>")
+
   })
 }
 
@@ -12,20 +15,34 @@ function albumSpinner(data){
 
   var id = parseInt($(this).attr("data"))
   var selector = "div[data-albid='" + id + "']"
-debugger;
   $.post("/albums/" + id + "/spin", function(data){
-    debugger;
+  
     var spinOpts = albumSpinDisplay(data)
     $(selector).html(spinOpts)
   })
 }
 
-function albumSpinDisplay(data){
+function albumDisplay(albumObj){
+  var alb=albumObj
+  var url = "http://localhost:3000/"
+  var albString = "<h1><a href='" + url + "albums/" + alb.id + "'>" + alb.title + "</a></h1>"
+      albString += "<img src='<%= asset_path("Album_half.jpg")%>'></img>"
+      if (alb.artist !== null){
+        albString += "<h2>by " + alb.artist["name"] + "</h2>"  
+      }else{
+        albString += "<h2><a href='/albums/" + alb.id + "/edit'>Add an Artist</a></h2>"
+      }
+      albString += "<h3><a href='" + url + "albums/" + alb.id + "/import_songs'>Get this album's tracks</a></h3>"
 
-  if (data.user_album !== undefined){
-    var album = data.user_album  
+  return albString
+}
+
+function albumSpinDisplay(spinInfo){
+
+  if (spinInfo.user_album !== undefined){
+    var album = spinInfo.user_album  
   }else{
-    var album = data
+    var album = spinInfo
   }
 
   var id = album.album_id

@@ -3,7 +3,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require users.js.erb
-//= require albums.js
+//= require albums.js.erb
 //= require discogs.js
 
 $(document).on("page:update", function(){

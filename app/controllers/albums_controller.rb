@@ -32,15 +32,15 @@ class AlbumsController < ApplicationController
           alb_params=JSON.parse(params["album"])
           album=Album.find_by(title: alb_params["title"])
           if album 
-            byebug
+            # byebug
             album.update(alb_params)
           else
             album=Album.create(alb_params)
             album.artist=Artist.find_or_create_by(name: album.group)
           end
 
-          album.artist=Artist.find_or_create_by(name: album.group)
-          current_user.albums << album
+          # album.artist=Artist.find_or_create_by(name: album.group)
+          current_user.albums << album unless current_user.albums.include?(album)
           album.save
           @album=album
           
