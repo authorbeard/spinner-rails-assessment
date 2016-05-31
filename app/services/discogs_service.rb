@@ -27,8 +27,7 @@ class DiscogsService
     end
 
     self.auth_hash=extract_tokens(response.body)
-    @discogs_info[:exchange_secret] = self.auth_hash["oauth_token_secret"]
-
+    # session[:exchange_secret] = self.auth_hash["oauth_token_secret"]
   end
 
 
@@ -36,20 +35,20 @@ class DiscogsService
 
     ex_hash=extract_tokens(string.split("?")[1])
     ex_token_url = @discogs_info[:main_url] + "oauth/access_token"
-    
+
     response=Faraday.post(ex_token_url) do |req|
       req["Content-Type"]="application/json"
       req["Data-Type"]="jsonp"
       req["Authorization"]="OAuth oauth_consumer_key=#{@discogs_info[:d_key]}",
         "oauth_nonce=#{ActionController::HttpAuthentication::Digest.nonce(Time.now)}",
         "oauth_token=#{ex_hash["oauth_token"]}",
-        "oauth_signature=#{@discogs_info[:d_secret]}&#{@discogs_info[:exchange_secret]}",
+        "oauth_signature=#{@discogs_info[:d_secret]}&#{self.auth_hash[:exchange_secret]}",
         "oauth_signature_method=PLAINTEXT",
         "oauth_timestamp=#{Time.now.to_i.to_s}",
         "oauth_verifier=#{ex_hash["oauth_verifier"]}"
       req["User-Agent"]="Spinner for Discogs"
     end
-    
+  byebug
     self.user_hash=extract_tokens(response.env.body)
   end
 
