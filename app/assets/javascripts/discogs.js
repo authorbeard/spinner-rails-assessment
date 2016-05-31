@@ -42,8 +42,8 @@ function ResultBuilder(resultObj){
   if (resultObj.type === "master" || resultObj.type === "release"){
     this.type="album"
     var artistTitle=resultObj.title.split(" - ")
-    this.album = new Album(artistTitle, resultObj.catno, resultObj.id, resultObj.resource_url, resultObj.year)
-    this.cover = resultObj.thumb
+    this.album = new Album(artistTitle, resultObj.catno, resultObj.id, resultObj.resource_url, resultObj.year, resultObj.thumb)
+    // this.cover = resultObj.thumb
 
   }else if(resultObj.type==="artist"){
     this.type="artist"
@@ -51,13 +51,14 @@ function ResultBuilder(resultObj){
   }
 }
 
-function Album(artistTitle, catno, rel_id, url, year){
+function Album(artistTitle, catno, rel_id, url, year, cover){
   this.title=artistTitle[1]
   this.group=artistTitle[0]
   this.catalog_no=catno
   this.rel_id=rel_id
   this.alb_url=url
   this.rel_date=year
+  this.cover = cover
 }
 
 // function ArtistBuilder(obj){
@@ -71,7 +72,7 @@ ResultBuilder.prototype.buildTitle=function(){
 }
 
 ResultBuilder.prototype.setImage=function(){
-  return "<img src='" + this.cover + "'></img><br>"
+  return "<img src='" + this.album.cover + "'></img><br>"
 }
 
 ResultBuilder.prototype.buildLink=function(){

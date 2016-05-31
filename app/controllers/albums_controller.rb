@@ -7,6 +7,9 @@ class AlbumsController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.json { render json: @album}
+    end
     
   end
 
@@ -28,11 +31,11 @@ class AlbumsController < ApplicationController
 
     respond_to do |format|
       format.json {
-        # byebug
+        
           alb_params=JSON.parse(params["album"])
           album=Album.find_by(title: alb_params["title"])
           if album 
-            # byebug
+    
             album.update(alb_params)
           else
             album=Album.create(alb_params)
@@ -43,10 +46,10 @@ class AlbumsController < ApplicationController
           current_user.albums << album unless current_user.albums.include?(album)
           album.save
           @album=album
-          
+  
           render json: @album
       }
-# byebug
+
      
     end
 
@@ -79,7 +82,7 @@ class AlbumsController < ApplicationController
   def discogs_import
      #### THIS WORKS, FIGURE OUT HOW TO ROUTE JSON DIFFERENTLY ###
     # @album.new(JSON.parse(params["album"]))
-  # byebug  
+    
   #   if @album.save!
   #     redirect_to album_path(@album)
   #   end

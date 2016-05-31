@@ -1,10 +1,10 @@
 function importAlbum(data){
   var alb = $(this).attr("data-alb")
-  $.post("albums", {album: alb}, "json").success(function(data){
-  
-    var alb=data.album
 
-    $('.page-content').html(albumDisplay(alb))
+  $.post("albums", {album: alb}, "json").success(function(data){
+    var alb=data.album
+// debugger;
+    $('.search-results').html(albumDisplay(alb))
     // $("div.messages").html("<h3><a href='/albums/" + alb.id + "'>Imported " + alb.title + "</a></h3>")
 
   })
@@ -26,7 +26,8 @@ function albumDisplay(albumObj){
   var alb=albumObj
   var url = "http://localhost:3000/"
   var albString = "<h1><a href='" + url + "albums/" + alb.id + "'>" + alb.title + "</a></h1>"
-      albString += "<img src='<%= asset_path("Album_half.jpg")%>'></img>"
+debugger;     
+      albString += "<img src='" + alb.cover + "'></img>"
       if (alb.artist !== null){
         albString += "<h2>by " + alb.artist["name"] + "</h2>"  
       }else{

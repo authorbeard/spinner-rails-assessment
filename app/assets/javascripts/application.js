@@ -5,6 +5,7 @@
 //= require users.js.erb
 //= require albums.js.erb
 //= require discogs.js
+//= require songs.js
 
 $(document).on("page:update", function(){
   // debugger;
@@ -17,5 +18,6 @@ function attachListeners(){
   $("a.user-show").click(getUserAlbums)
   $("#discogs-search").submit(searchDiscogs)
   $("button#import-album").click(importAlbum)
+  $("h3.song").click(getSongArtist)
 }
 

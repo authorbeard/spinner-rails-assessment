@@ -12,7 +12,7 @@
     <h3>Songs: </h3>
     <% album.songs.each_with_index do |s, i| %>
       <ul>
-        <h3><%= "#{i+1}."%> <%=link_to s.title, song_path(s)%></h3>
+        <h3 class="song" id='<%=s.id%>'><%= "#{i+1}."%> <%=link_to s.title, song_path(s)%></h3>
       </ul>
     <% end %>
   <% end %>

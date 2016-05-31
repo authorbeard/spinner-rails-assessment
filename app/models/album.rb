@@ -38,6 +38,10 @@ class Album < ActiveRecord::Base
     end
   end
 
+  def cover_from_url(url)
+    self.cover=URI.parse(url).open
+  end
+
   def artist_name
     artist ? artist.name : nil
   end
