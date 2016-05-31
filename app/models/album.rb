@@ -6,6 +6,8 @@ class Album < ActiveRecord::Base
   has_many :fans, through: :user_albums, :source=>:user
 
   validates_presence_of :title
+  has_attached_file :cover, default_url: ':style/default.png'
+  validates_attachment_content_type :cover, content_type: /\Aimage\/.*\Z/
   
   accepts_nested_attributes_for :artist, reject_if: :empty?
   accepts_nested_attributes_for :songs, reject_if: :empty?

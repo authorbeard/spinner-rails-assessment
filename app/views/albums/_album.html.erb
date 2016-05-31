@@ -1,7 +1,7 @@
 
   <h1><%= link_to album.title, album_path(album) %></h1>
 
-  <%= image_tag 'Album_half.jpg' %>
+  <%= image_tag album.cover.url %>
 
   <h2>Artist: <%= album.artist_name if album.artist!=nil%></h2>
 

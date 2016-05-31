@@ -34,6 +34,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'figaro'
+gem 'paperclip'
 
 gem 'pry'
 group :development, :test do
